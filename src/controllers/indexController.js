@@ -4,15 +4,23 @@ const { body, validationResult, matchedData } = require('express-validator')
 
 const validateUser = [
   body("firstname").trim().notEmpty()
-    .isLength({min: 3, max: 50}).withMessage("FirstName should range from 3-50 characters"),
+    .isLength({min: 3}).withMessage("First name is too short"),
   body("lastname").trim().notEmpty()
-    .isLength({min:3, max: 50}).withMessage("LastName should range from 3-50 characters"),
+    .isLength({min:3}).withMessage("Last name is too short"),
   body("username").trim().notEmpty()
-    .isLength({min:3, max: 25}).withMessage("Username should range from 3- 25 chararcters"),
+    .isLength({min: 3}).withMessage("Username is too short"),
   body("password").trim().notEmpty()
-    .isLength({min: 8, max: 999}).withMessage("Password should range from 8-999 characters"),
+    .isLength({min: 8}).withMessage("Password is too short"),
   body("email").trim().notEmpty()
-    .isEmail().withMessage("Enter an actual email address")
+    .isEmail().withMessage("Enter an actual email address"),
+  body("confirmpassword").trim().notEmpty()
+    .custom((value, {req}) => {
+    if (value !== req.body.password) {
+      throw new Error('Passwords must be same')
+    } else {
+      return value === req.body.password
+    }
+  }).isLength({min: 8}).withMessage("Confirm password too short")
 ]
 
 function renderIndex(req, res) {
@@ -35,6 +43,7 @@ const handleRegister = [
           errors: result.array()
         })
       }
+      console.log(req.body);
       const {firstname, lastname, email, username, password} = matchedData(req);
       if (await db.getUserByEmail(email)) {
         return res.status(400).render("register", {
