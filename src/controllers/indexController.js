@@ -35,12 +35,15 @@ const handleRegister = [
           errors: result.array()
         })
       }
-      const {firstname, lastname, username, password} = matchedData(req);
-      if (db.getUser(username) == null) {
-        const hash = await bcrypt.hash(password, 10);
-        await db.registerUser(firstname, lastname, username, hash);
-        res.redirect("/");
+      const {firstname, lastname, email, username, password} = matchedData(req);
+      if (await db.getUserByEmail(email)) {
+        return res.status(400).render("register", {
+          errors: [{ msg: "User email already in use"}]
+        })
       }
+      const hash = await bcrypt.hash(password, 10);
+      await db.registerUser(firstname, lastname, email, username, hash);
+      res.redirect("/");
     } catch(error) {
       throw (error)
     }

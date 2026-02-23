@@ -18,17 +18,29 @@ async function getUserById(id) {
   }
 }
 
-async function registerUser(firstname, lastname, username, hash) {
+async function registerUser(firstname, lastname, email, username, hash) {
   try {
-    return await pool.query(`INSERT INTO users (firstname, lastname, username, hash) VALUES ($1, $2, $3, $4)`,
-      [firstname, lastname, username, hash])
+    return await pool.query(`INSERT INTO users (firstname, lastname, email, username, hash) VALUES ($1, $2, $3, $4, $5)`,
+      [firstname, lastname, email, username, hash])
   } catch(error) {
     throw(error)
+  }
+}
+
+async function getUserByEmail(email) {
+  try {
+    const {rows} = await pool.query(`SELECT * FROM users WHERE email=($1)`,
+      [email])
+    const user = rows[0]
+    return user;
+  } catch (error) {
+    throw(error);
   }
 }
 
 module.exports = {
   getUser,
   registerUser,
-  getUserById
+  getUserById,
+  getUserByEmail
 }

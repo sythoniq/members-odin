@@ -20,6 +20,7 @@ CREATE TABLE users (
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   firstname varchar(30),
   lastname varchar(30),
+  email varchar(255),
   username varchar(30),
   hash varchar(999),
   member boolean NOT NULL DEFAULT false
