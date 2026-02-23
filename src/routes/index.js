@@ -4,7 +4,7 @@ const controller = require('../controllers/indexController')
 const passport = require("passport")
 const auth = require('../config/auth')
 
-index.get("/", auth.isAuth, controller.renderIndex)
+index.get("/", auth.isAuth)
 index.get("/register", (req, res) => {
   res.render("register")
 })

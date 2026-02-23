@@ -1,8 +1,10 @@
 function isAuth (req, res, next) {
   if (req.isAuthenticated()) {
-    next();
+    res.render("index", {
+      user: req.user
+    })
   } else {
-    res.status(401).json({msg: 'Unauthorized'})
+    res.render("index")
   }
 }
 

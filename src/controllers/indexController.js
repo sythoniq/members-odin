@@ -1,5 +1,19 @@
 const bcrypt = require('bcryptjs')
 const db = require("../db/query")
+const { body, validationResult, matchedData } = require('express-validator')
+
+const validateUser = [
+  body("firstname").trim().notEmpty()
+    .isLength({min: 3, max: 50}).withMessage("FirstName should range from 3-50 characters"),
+  body("lastname").trim().notEmpty()
+    .isLength({min:3, max: 50}).withMessage("LastName should range from 3-50 characters"),
+  body("username").trim().notEmpty()
+    .isLength({min:3, max: 25}).withMessage("Username should range from 3- 25 chararcters"),
+  body("password").trim().notEmpty()
+    .isLength({min: 8, max: 999}).withMessage("Password should range from 8-999 characters"),
+  body("email").trim().notEmpty()
+    .isEmail().withMessage("Enter an actual email address")
+]
 
 function renderIndex(req, res) {
   if (req.user) {
@@ -11,14 +25,28 @@ function renderIndex(req, res) {
   }
 }
 
-async function handleRegister(req, res) {
-  try {
-    const hash = await bcrypt.hash(req.body.password, 10);
-    await db.registerUser(req.body.username, hash);
-  } catch(error) {
-    throw(error);
+const handleRegister = [
+  validateUser,
+  async (req, res) => {
+    try {
+      const result = validationResult(req);
+      if (!result.isEmpty()) {
+        return res.status(400).render("register", {
+          errors: result.array()
+        })
+      }
+      const {firstname, lastname, username, password} = matchedData(req);
+      if (db.getUser(username) == null) {
+        const hash = await bcrypt.hash(password, 10);
+        await db.registerUser(firstname, lastname, username, hash);
+        res.redirect("/");
+      }
+    } catch(error) {
+      throw (error)
+    }
   }
-}
+]
+
 
 module.exports = {
   renderIndex,

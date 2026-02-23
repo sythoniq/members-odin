@@ -18,10 +18,10 @@ async function getUserById(id) {
   }
 }
 
-async function registerUser(username, hash) {
+async function registerUser(firstname, lastname, username, hash) {
   try {
-    return await pool.query(`INSERT INTO users (username, hash) VALUES ($1, $2)`,
-      [username, hash])
+    return await pool.query(`INSERT INTO users (firstname, lastname, username, hash) VALUES ($1, $2, $3, $4)`,
+      [firstname, lastname, username, hash])
   } catch(error) {
     throw(error)
   }
