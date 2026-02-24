@@ -43,7 +43,6 @@ const handleRegister = [
           errors: result.array()
         })
       }
-      console.log(req.body);
       const {firstname, lastname, email, username, password} = matchedData(req);
       if (await db.getUserByEmail(email)) {
         return res.status(400).render("register", {

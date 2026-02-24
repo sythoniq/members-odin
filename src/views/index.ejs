@@ -5,7 +5,13 @@
   </head>
   <body>
     <% if (locals.user) { %>
-    <h2>Welcome <%= user.username %></h2>   
+    <h2>Welcome <%= user.username %></h2>  
+    <p>Some filler text will go here to make the page more contextual</p> 
+    <a href="/messages">
+      <div class="messages-link">
+        <p>Messages</p>
+      </div>
+    </a>
     <% } else { %>
     <h2>Log In</h2>
     <form action="/login" method="post">

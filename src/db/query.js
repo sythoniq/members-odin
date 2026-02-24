@@ -38,9 +38,31 @@ async function getUserByEmail(email) {
   }
 }
 
+async function getMessages() {
+  try {
+    const {rows} = await pool.query(`SELECT * FROM messages;`)
+    return rows;
+  } catch(error) {
+    throw(error);
+  }
+}
+
+async function addMessage(title, message, user) {
+  try {
+    await pool.query(`
+INSERT INTO messages (messagetitle, message, messagetime, userid) VALUES 
+($1, $2, now(), $3);
+`, [title, message, user.id])
+  } catch(error) {
+    throw(error);
+  }
+}
+
 module.exports = {
   getUser,
   registerUser,
   getUserById,
-  getUserByEmail
+  getUserByEmail,
+  getMessages,
+  addMessage
 }

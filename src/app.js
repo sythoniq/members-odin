@@ -32,8 +32,10 @@ require('./config/passport')
 app.use(passport.session())
 
 const index = require('./routes/index')
+const messages = require("./routes/messages")
 
 app.use('/', index);
+app.use('/messages', messages)
 
 
 app.listen(3000, (error) => {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Messages</title>
+  </head>
+  <body>
+    <% if (locals.messages) { %>
+    <main class="messages-content">
+      <% messages.forEach((message) => { %>
+      <div class="message-card">
+        <h2><%= message.messagetitle %></h2>
+        <p><%= message.message %></p>
+        <%= console.log(message.messagetime) %>
+        <div class="messenger">
+          <% if (user.memeber) { %>
+          <p>Uploader</p>
+          <% } else { %>
+          <p>Anonymous</p>
+          <% } %>
+        </div>
+      </div>
+      <%})%>
+    </main>
+    <% } %>
+    <a href="/messages/new">
+      <div class="messages-create">
+        <p>New Message</p>
+      </div>
+    </a>
+  </body>
+</html>
