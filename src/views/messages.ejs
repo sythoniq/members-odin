@@ -5,6 +5,21 @@
   </head>
   <body>
     <% if (locals.messages) { %>
+    <% if (user.member) { %>
+    <form action="/messages/new" method="post">
+      <h2>Create Post</h2>
+      <label for="message-title">Message Title</label>
+      <input type="text" id="message-title" name="messagetitle" />
+      <label for="message">Message</label>
+      <input type="text" id="message" name="message" />
+      <button type="submit">Create</button>
+    </form>
+    <%}%>
+    <% if (!user.member) {%>
+      <div class="join-promt">
+      <p>Want to yap, <a href="/join">visit here!</a></p>
+    </div>
+    <%}%>
     <main class="messages-content">
       <% messages.forEach((message) => { %>
       <div class="message-card">
@@ -30,15 +45,5 @@
       <%})%>
     </main>
     <% } %>
-    <a href="/messages/new">
-      <div class="messages-create">
-        <p>New Message</p>
-      </div>
-    </a>
-    <a href="/join">
-      <div class="join-test">
-        <p>Join Club</p>
-      </div>
-    </a>
   </body>
 </html>

@@ -4,21 +4,23 @@
     <title>Register</title>
   </head>
   <body>
-    <%- include('partials/errors.ejs') %>
-    <form action="/register" method="post">
-      <label for="firstname">First Name</label>
-      <input type="text" id="firstname" name="firstname" />
-      <label for="lastname">Last Name</label>
-      <input type="text" id="lastname" name="lastname" />
-      <label for="username">Username</label>
-      <input for="text" id="username" name="username" />
-      <label for="email">Email</label>
-      <input for="email" id="email" name="email" />
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
-      <label for="confirmpassword">Confirm Password</label>
-      <input type="password" name="confirmpassword" id="confirmpassword" />
-      <button type="submit">Register</button>
-    </form>
+    <main class="register-form">
+      <%- include('partials/errors.ejs') %>
+      <form action="/register" method="post">
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" name="firstname" />
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" name="lastname" />
+        <label for="username">Username</label>
+        <input for="text" id="username" name="username" />
+        <label for="email">Email</label>
+        <input for="email" id="email" name="email" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <label for="confirmpassword">Confirm Password</label>
+        <input type="password" name="confirmpassword" id="confirmpassword" />
+        <button type="submit">Register</button>
+      </form>
+    </main>
   </body>
 </html>

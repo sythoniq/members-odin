@@ -63,7 +63,7 @@ async function updateUserPermission(user, type) {
     if (type == 'member') {
       await pool.query(`UPDATE users SET member = ($1) WHERE id = ($2)`, ['true', user.id])
     } else if (type == 'admin') {
-      await pool.query(`UPDATE users SET admin = ($1) WHERE id = ($2)`, ['true', user.id])
+      await pool.query(`UPDATE users SET admin = ($1), member = ($2) WHERE id = ($3)`, ['true', 'true', user.id])
     }
   } catch(error) {
     throw(error);
