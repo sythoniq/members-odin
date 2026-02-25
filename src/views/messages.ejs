@@ -7,11 +7,11 @@
     <% if (locals.messages) { %>
     <% if (user.member) { %>
     <form action="/messages/new" method="post">
-      <h2>Create Post</h2>
-      <label for="message-title">Message Title</label>
-      <input type="text" id="message-title" name="messagetitle" />
-      <label for="message">Message</label>
-      <input type="text" id="message" name="message" />
+      <label for="message-title"></label>
+      <input type="text" id="message-title" name="messagetitle"
+        placeholder="Message title"/>
+      <label for="message"></label>
+      <input type="textarea" id="message" name="message" placeholder="Yap..." />
       <button type="submit">Create</button>
     </form>
     <%}%>
