@@ -10,14 +10,22 @@
       <div class="message-card">
         <h2><%= message.messagetitle %></h2>
         <p><%= message.message %></p>
-        <%= console.log(message.messagetime) %>
+        <p><%= formatDate(message.messagetime) %></p>
         <div class="messenger">
-          <% if (user.memeber) { %>
-          <p>Uploader</p>
-          <% } else { %>
-          <p>Anonymous</p>
-          <% } %>
+          <% if (!user.member) { %>
+            <p>Anon</p>
+          <%}%> 
+          <% if (user.member) { %>
+            <p><%= user.username %></p>
+          <%}%>
         </div>
+        <% if (user.admin) { %>
+        <a href="/messages/delete/<%= message.messageid %>">
+          <div class="delete">
+            <p>Delete</p>
+          </div>
+        </a>
+        <% } %>
       </div>
       <%})%>
     </main>
@@ -25,6 +33,11 @@
     <a href="/messages/new">
       <div class="messages-create">
         <p>New Message</p>
+      </div>
+    </a>
+    <a href="/join">
+      <div class="join-test">
+        <p>Join Club</p>
       </div>
     </a>
   </body>

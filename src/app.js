@@ -11,6 +11,9 @@ require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+const assetsPath = path.join(__dirname, "publics")
+
+app.use(express.static(assetsPath))
 app.set("views", path.join(__dirname, 'views'))
 app.set("view engine", "ejs");
 

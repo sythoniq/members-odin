@@ -58,11 +58,41 @@ INSERT INTO messages (messagetitle, message, messagetime, userid) VALUES
   }
 }
 
+async function updateUserPermission(user, type) {
+  try {
+    if (type == 'member') {
+      await pool.query(`UPDATE users SET member = ($1) WHERE id = ($2)`, ['true', user.id])
+    } else if (type == 'admin') {
+      await pool.query(`UPDATE users SET admin = ($1) WHERE id = ($2)`, ['true', user.id])
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
+
+async function getMessage(messageid) {
+  try {
+    await pool.query(`SELECT * FROM messages WHERE messageid=($1)`, [messageid])
+  } catch(error) {
+    throw(error);
+  }
+}
+
+async function deleteMessage(messageid) {
+  try {
+    await pool.query(`DELETE FROM messages WHERE messageid = ($1)`, [messageid])
+  } catch(error) {
+    throw(error)
+  }
+}
+
 module.exports = {
   getUser,
   registerUser,
   getUserById,
   getUserByEmail,
   getMessages,
-  addMessage
+  addMessage,
+  updateUserPermission,
+  deleteMessage
 }

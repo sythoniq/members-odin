@@ -7,12 +7,17 @@ const validateMessage = [
   body("message").notEmpty().trim()
 ]
 
+function formatDate(dates) {
+  const string = dates.toString();
+  const [_, month, date, year, time] = string.split(" ");
+  const [hour, minutes] = time.split(":");
+  return `${hour}:${minutes} · ${date} ${month}`
+}
+
 async function renderMessages(req, res) {
-  const rows = await db.getMessages();
-  res.render("messages", {
-    messages: rows,
-    user: req.user
-  })
+  const messages = await db.getMessages();
+  const user = req.user;
+  res.render("messages", {messages, user, formatDate})
 }
 
 const addMessage = [
@@ -34,7 +39,17 @@ const addMessage = [
   }
 ]
 
+async function deleteMessage(req, res) {
+  try {
+    console.log(req);
+    res.redirect("/messages");
+  } catch(error) {
+    throw(error)
+  }
+}
+
 module.exports = {
   renderMessages,
-  addMessage
+  addMessage,
+  deleteMessage
 }

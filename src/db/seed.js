@@ -23,10 +23,12 @@ CREATE TABLE users (
   email varchar(255),
   username varchar(30),
   hash varchar(999),
+  admin boolean NOT NULL DEFAULT false,
   member boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE messages (
+  messageid integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   messagetitle varchar(255),
   message varchar(6000),
   messagetime date,

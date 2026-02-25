@@ -59,7 +59,25 @@ const handleRegister = [
 ]
 
 
+async function registerMember(req, res) {
+  const user = await db.getUserById(req.user.id);
+  try {
+    if (req.body.answer == process.env.MEMBER) {
+      await db.updateUserPermission(user, 'member');
+      res.redirect("/messages")
+    } else if (req.body.answer == process.env.ADMIN) {
+      await db.updateUserPermission(user, 'admin')
+      res.redirect("/messages")
+    }else {
+      res.redirect("/messages");
+    }
+  } catch(error) {
+    throw(error);
+  }
+}
+
 module.exports = {
   renderIndex,
-  handleRegister
+  handleRegister,
+  registerMember
 }
