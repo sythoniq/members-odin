@@ -2,16 +2,24 @@
 <html lang="en">
   <head>
     <title>Home</title>
+    <link href="index.css" rel="stylesheet" />
   </head>
   <body>
     <% if (locals.user) { %>
-    <h2>Welcome <%= user.username %></h2>  
-    <p>Some filler text will go here to make the page more contextual</p> 
-    <a href="/messages">
-      <div class="messages-link">
-        <p>Messages</p>
-      </div>
-    </a>
+    <main class="user-welcome">
+      <h1>Yap Space...</h1> 
+      <article class="logged-in">
+        <p>You’re logged in and viewing protected content. This area is restricted to authenticated users only.</p>
+        <p>This project explores authentication flows, session handling, and access control, combined with game-style progression systems inspired by anime, manga, and manhwa mechanics.</p>
+        <p>Everything here is part of a development environment.
+          Expect unfinished features, broken layouts, and occasional stupidity.</p>
+      </article>
+      <a href="/messages">
+        <div class="messages-link">
+          <span>Proceed</span>
+        </div>
+      </a>
+    </main>
     <% } else { %>
     <h2>Log In</h2>
     <form action="/login" method="post">
@@ -23,7 +31,7 @@
     </form>
     <a href="/register">
       <div class="register-link">
-        <p>Register</p>
+        <span>Register</span>
       </div>
     </a>
     <% } %>

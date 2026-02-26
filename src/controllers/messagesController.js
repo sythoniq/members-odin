@@ -41,7 +41,7 @@ const addMessage = [
 
 async function deleteMessage(req, res) {
   try {
-    console.log(req);
+    console.log(req.body.id)
     res.redirect("/messages");
   } catch(error) {
     throw(error)
