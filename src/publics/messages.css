@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0; 
+}
+
+body {
+  background-color: var(--bg-main);
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-card {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  color: var(--secondary-text);
+  border: 1px solid var(--border);
+  padding: 0.8em 1.5em;
+  border-radius: 12px;
+  background-color: var(--bg-card);
+  gap: .8em;
+}
+
+.message-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 15%;
+}
+
+.message-card > h2 {
+  border-bottom: 1px solid var(--divider);
+}
+
+.message-card > p {
+  font-size: 1.2em;
+}
+
+.message-card > a {
+  text-decoration: none;
+  color: var(--primary-text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .6em 1.2em;
+  align-self: end;
+  background-color: rgba(200, 0, 0, 0.6);
+}
+
+.message-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  width: 50%;
+  border: 1px solid var(--border);
+  padding: 1.2em;
+  border-radius: 12px;
+  align-self: center;
+}
+
+form > input, form > button {
+  font-size: 1.2em;
+  padding: .2em .8em;
+  border-radius: 12px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--secondary-text);
+}
+
+form > button {
+  align-self: center;
+  font-size: 1.2em;
+  border-radius: 12px;
+  padding: .2em .8em;
+}

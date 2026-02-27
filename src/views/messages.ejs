@@ -5,27 +5,35 @@
     <link href="messages.css" rel="stylesheet" />
   </head>
   <body>
+    <%- include('partials/heading.ejs') %>
     <% if (locals.messages) { %>
+      <main class="message-container">
       <% messages.forEach((message) => {%>
         <div class="message-card">
           <h2><%= message.messagetitle %></h2>
           <p><%= message.message %></p>
           <div class="message-info">
-            <% if (locals.currentUser) { %>
-                <% if (locals.currentUser.member) { %>
-                  <p><%= format(message.messagetime) %></p>
-                  <p><%= message.username %></p>
-                <%} else {%>
-                  <p>???</p> 
-                  <p>Anon</p>
-                <% } %>
+          <% if (locals.currentUser) { %>
+              <% if (locals.currentUser.member) { %>
+                <p><%= format(message.messagetime) %></p>
+                <p><%= message.username %></p>
+              <%} else {%>
+                <p>???</p> 
+                <p>Anon</p>
+              <% } %>
             <% } else { %>
               <p>???</p> 
               <p>Anon</p>
             <% } %>
           </div>
+          <% if (locals.currentUser) {%>
+            <% if (locals.currentUser.admin) {%>
+              <a href="/messages/delete/<%= message.messageid %>">Delete</a>
+            <%}%>
+        <%}%>
         </div>
       <%})%>
+      </main>
       <% if (locals.currentUser) { %>
         <div class="message-form">
           <form action="/messages/new" method="post">

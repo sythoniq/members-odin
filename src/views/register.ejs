@@ -2,10 +2,13 @@
 <html lang="en">
   <head>
     <title>Register</title>
+    <link href="/colors.css" rel="stylesheet" />
+    <link href="/forms.css" rel="stylesheet" />
   </head>
   <body>
     <main class="register-form">
       <%- include('partials/errors.ejs') %>
+      <h2> Sign Up</h2>
       <form action="/register" method="post">
         <label for="firstname">First Name</label>
         <input type="text" id="firstname" name="firstname" />
