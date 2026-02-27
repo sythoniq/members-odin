@@ -34,6 +34,12 @@ require('./config/passport')
 
 app.use(passport.session())
 
+app.use((req, res, next) => {
+  res.locals.currentSession = req.session;
+  res.locals.currentUser = req.user;
+  next();
+});
+
 const index = require('./routes/index')
 const messages = require("./routes/messages")
 

@@ -1,0 +1,15 @@
+:root {
+  --bg-main: rgba(11, 15, 20, 1);
+  --bg-panel: rgba(18, 24, 33, .8);
+  --bg-card: rgba(22, 29, 39, 1);
+
+  --primary-text: rgba(230, 237, 243, .7);
+  --secondary-text: rgba(154, 164, 178, 1);
+
+  --accent: rgba(61, 220, 255, 1);
+  --accent-soft: rgba(61, 220, 255, 0.15);
+
+  --border: rgba(31, 41, 55, 1);
+  --divider: rgba(26, 34, 48, 1);
+
+}

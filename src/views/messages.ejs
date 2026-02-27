@@ -1,54 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Messages</title>
+    <link href="colors.css" rel="stylesheet" />
+    <link href="messages.css" rel="stylesheet" />
   </head>
   <body>
-    <% if (locals.popup) { %>
-      <div class="register-popup">
-      <p><a href='/login'>Sign in</a> or <a href="/register">create an
-        account</a> to get a full view of everything...</p>
-    </div>
-    <%}%>
     <% if (locals.messages) { %>
-    <% if (user.member) { %>
-    <form action="/messages/new" method="post">
-      <label for="message-title"></label>
-      <input type="text" id="message-title" name="messagetitle"
-        placeholder="Message title"/>
-      <label for="message"></label>
-      <input type="textarea" id="message" name="message" placeholder="Yap..." />
-      <button type="submit">Create</button>
-    </form>
-    <%}%>
-    <% if (!user.member) {%>
-      <div class="join-promt">
-      <p>Want to yap, <a href="/join">visit here!</a></p>
-    </div>
-    <%}%>
-    <main class="messages-content">
-      <% messages.forEach((message) => { %>
-      <div class="message-card">
-        <h2><%= message.messagetitle %></h2>
-        <p><%= message.message %></p>
-        <div class="messenger">
-          <% if (!user.member) { %>
-          <p>Anon</p>
-          <%}%> 
-          <% if (user.member) { %>
-          <p><%= user.username %></p>
-          <%}%>
-        </div>
-        <p><%= formatDate(message.messagetime) %></p>
-        <% if (user.admin) { %>
-        <a href="/messages/delete/<%= message.messageid %>">
-          <div class="delete">
-            <p>Delete</p>
+      <% messages.forEach((message) => {%>
+        <div class="message-card">
+          <h2><%= message.messagetitle %></h2>
+          <p><%= message.message %></p>
+          <div class="message-info">
+            <% if (locals.currentUser) { %>
+                <% if (locals.currentUser.member) { %>
+                  <p><%= format(message.messagetime) %></p>
+                  <p><%= message.username %></p>
+                <%} else {%>
+                  <p>???</p> 
+                  <p>Anon</p>
+                <% } %>
+            <% } else { %>
+              <p>???</p> 
+              <p>Anon</p>
+            <% } %>
           </div>
-        </a>
-        <% } %>
-      </div>
+        </div>
       <%})%>
+      <% if (locals.currentUser) { %>
+        <div class="message-form">
+          <form action="/messages/new" method="post">
+            <label for="messagetitle"></label>
+            <input type='text' name="messagetitle" placeholder="Title" />
+            <label for="message"></label>
+            <input type="text" name="message" placeholder="Hello World..." />
+            <button type="submit">Post</button>
+          </form>
+        </div
+      <%}%>
+    <% } else { %>
+    <main class="error">
+      <p>Failed to fetch messages</p>
     </main>
     <% } %>
   </body>

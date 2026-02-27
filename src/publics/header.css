@@ -1,0 +1,46 @@
+.overall-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .6em;
+  background-color: var(--bg-panel);
+  border-radius: 12px;
+}
+
+.home-nav > a, .header-options > a {
+  text-decoration: none; 
+  color: var(--primary-text);
+}
+
+.home-nav > a:hover, .header-options > a:hover {
+  color: var(--accent);
+}
+
+.header-options > a {
+  border: 1px solid var(--border);
+  padding: .5em;
+  border-radius: 12px;
+}
+
+.home-btn {
+  display: flex;
+  justify-cotnent: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0em 0.5em;
+  border-radius: 12px;
+  font-size: 1.2em;
+}
+
+.home-btn > svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.header-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .75em;
+}
+

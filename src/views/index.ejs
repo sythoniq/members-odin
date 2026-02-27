@@ -5,6 +5,7 @@
     <link href="index.css" rel="stylesheet" />
   </head>
   <body>
+    <%- include('partials/heading.ejs') %>
     <main class="user-welcome">
       <h1>Yap Space...</h1> 
       <article class="logged-in">
@@ -16,10 +17,8 @@
         <p>Everything here is part of a development environment.
           Expect unfinished features, broken layouts, and occasional stupidity.</p>
       </article>
-      <a href="/messages">
-        <div class="messages-link">
-          <span>Want A Peek</span>
-        </div>
+      <a href="/messages" class="message-link">
+        Have A Look
       </a>
     </main>
   </body>

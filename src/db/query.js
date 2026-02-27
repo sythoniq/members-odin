@@ -40,7 +40,7 @@ async function getUserByEmail(email) {
 
 async function getMessages() {
   try {
-    const {rows} = await pool.query(`SELECT * FROM messages;`)
+    const {rows} = await pool.query(`SELECT * FROM messages INNER JOIN users ON messages.userid = userid ORDER BY messagetime DESC;`)
     return rows;
   } catch(error) {
     throw(error);

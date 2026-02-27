@@ -7,17 +7,16 @@ const validateMessage = [
   body("message").notEmpty().trim()
 ]
 
-function formatDate(dates) {
+function format(dates) {
   const string = dates.toString();
   const [_, month, date, year, time] = string.split(" ");
   const [hour, minutes] = time.split(":");
-  return `${hour}:${minutes} · ${date} ${month}`
+  return `${date} ${month}`
 }
 
 async function renderMessages(req, res) {
   const messages = await db.getMessages();
-  const user = req.user;
-  res.render("messages", {messages, user, formatDate})
+  res.render("messages", {messages, format})
 }
 
 const addMessage = [
