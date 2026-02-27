@@ -4,6 +4,12 @@
     <title>Messages</title>
   </head>
   <body>
+    <% if (locals.popup) { %>
+      <div class="register-popup">
+      <p><a href='/login'>Sign in</a> or <a href="/register">create an
+        account</a> to get a full view of everything...</p>
+    </div>
+    <%}%>
     <% if (locals.messages) { %>
     <% if (user.member) { %>
     <form action="/messages/new" method="post">
@@ -25,15 +31,15 @@
       <div class="message-card">
         <h2><%= message.messagetitle %></h2>
         <p><%= message.message %></p>
-        <p><%= formatDate(message.messagetime) %></p>
         <div class="messenger">
           <% if (!user.member) { %>
-            <p>Anon</p>
+          <p>Anon</p>
           <%}%> 
           <% if (user.member) { %>
-            <p><%= user.username %></p>
+          <p><%= user.username %></p>
           <%}%>
         </div>
+        <p><%= formatDate(message.messagetime) %></p>
         <% if (user.admin) { %>
         <a href="/messages/delete/<%= message.messageid %>">
           <div class="delete">

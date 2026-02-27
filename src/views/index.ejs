@@ -5,36 +5,23 @@
     <link href="index.css" rel="stylesheet" />
   </head>
   <body>
-    <% if (locals.user) { %>
     <main class="user-welcome">
       <h1>Yap Space...</h1> 
       <article class="logged-in">
-        <p>You’re logged in and viewing protected content. This area is restricted to authenticated users only.</p>
-        <p>This project explores authentication flows, session handling, and access control, combined with game-style progression systems inspired by anime, manga, and manhwa mechanics.</p>
+        <p>Welcome to a yap space where you can yap about almost anything you
+          wish to, no filters ig</p>
+        <p>This project has taught me alot about user authentication and
+          authorization in accessing different routes. As well as how sessions
+          work, what cookies are and just how powerful they are.</p>
         <p>Everything here is part of a development environment.
           Expect unfinished features, broken layouts, and occasional stupidity.</p>
       </article>
       <a href="/messages">
         <div class="messages-link">
-          <span>Proceed</span>
+          <span>Want A Peek</span>
         </div>
       </a>
     </main>
-    <% } else { %>
-    <h2>Log In</h2>
-    <form action="/login" method="post">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" />
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" />
-      <button type="submit">Log In</button>
-    </form>
-    <a href="/register">
-      <div class="register-link">
-        <span>Register</span>
-      </div>
-    </a>
-    <% } %>
   </body>
 </html>
 
