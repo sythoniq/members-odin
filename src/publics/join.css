@@ -1,0 +1,52 @@
+body {
+  background-color: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+.join-container {
+  width: 800px;
+  height: 350px;
+  background-color: var(--bg-card);
+  align-self: center;
+  padding: 1.2em;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  box-shadow: 2px 2px 10px 5px var(--accent-soft);
+}
+
+.join-container > form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 1.2em;
+}
+
+form > input, form > button{
+  font-size: 1.8em;
+  font-family: monospace;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--primary-text);
+  outline: none;
+}
+
+form > input {
+  padding: 1.2em;
+}
+
+form > button {
+  align-self: center;
+  padding: 0 1.2em;
+}
+
+.content-container {
+  font-size: 1.5em;
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--primary-text);
+}

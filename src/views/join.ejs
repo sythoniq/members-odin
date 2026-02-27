@@ -2,18 +2,21 @@
 <html lang="en">
   <head>
     <title>Join The Club</title>
+    <link href="/colors.css" rel="stylesheet" />
+    <link href="/join.css" rel="stylesheet" />
   </head>
   <body>
+    <%- include('partials/heading.ejs') %>
     <main class="join-container">
       <div class="content-container">
         <h2>To Join Or Not To Join</h2>
         <p>Geniunely I have no clue as to what on earth I can put here to be
           frank about it. Anywho to become a member just type in member, all
-          set.</p>
+          set. Can you figure out what to say to get admin role?</p>
       </div>
       <form action="/join" method="post">
         <label for="answer"></label>
-        <input type="text" id="club-answer" name="answer" />
+        <input type="text" id="club-answer" name="answer" placeholder="member"/>
         <button type="submit">Answer</button>
       </form>
     </main>
