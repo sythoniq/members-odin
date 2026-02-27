@@ -6,12 +6,12 @@
     <title>Messages</title>
   </head>
   <body>
+    <%- include('partials/heading.ejs') %>
     <% if (!locals.currentUser) {%>
     <div class="join-request">
       <p>You aren't a member yet, wanna <a href="/join">join...</a></p>
     </div>
     <%}%>
-    <%- include('partials/heading.ejs') %>
     <% if (locals.messages) { %>
       <main class="message-container">
       <% messages.forEach((message) => {%>
