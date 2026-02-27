@@ -45,7 +45,10 @@ const messages = require("./routes/messages")
 
 app.use('/', index);
 app.use('/messages', messages)
-
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('oopsie, something broke...')
+})
 
 app.listen(3000, (error) => {
   if (error) {

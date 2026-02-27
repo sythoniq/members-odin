@@ -5,7 +5,7 @@ async function getUser(username) {
     const {rows} = await pool.query(`SELECT * FROM users WHERE username=($1)`, [username])
     return rows[0]
   } catch (error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -14,7 +14,7 @@ async function getUserById(id) {
     const {rows} = await pool.query('SELECT * FROM users WHERE id=($1)', [id])
     return rows[0]
   }catch (error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -23,7 +23,7 @@ async function registerUser(firstname, lastname, email, username, hash) {
     return await pool.query(`INSERT INTO users (firstname, lastname, email, username, hash) VALUES ($1, $2, $3, $4, $5)`,
       [firstname, lastname, email, username, hash])
   } catch(error) {
-    throw(error)
+    console.error(error)
   }
 }
 
@@ -34,7 +34,7 @@ async function getUserByEmail(email) {
     const user = rows[0]
     return user;
   } catch (error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -43,7 +43,7 @@ async function getMessages() {
     const {rows} = await pool.query(`SELECT * FROM messages INNER JOIN users ON messages.userid = userid ORDER BY messagetime DESC;`)
     return rows;
   } catch(error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -54,7 +54,7 @@ INSERT INTO messages (messagetitle, message, messagetime, userid) VALUES
 ($1, $2, now(), $3);
 `, [title, message, user.id])
   } catch(error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -66,7 +66,7 @@ async function updateUserPermission(user, type) {
       await pool.query(`UPDATE users SET admin = ($1), member = ($2) WHERE id = ($3)`, ['true', 'true', user.id])
     }
   } catch(error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -74,7 +74,7 @@ async function getMessage(messageid) {
   try {
     await pool.query(`SELECT * FROM messages WHERE messageid=($1)`, [messageid])
   } catch(error) {
-    throw(error);
+    console.error(error);
   }
 }
 
@@ -82,7 +82,7 @@ async function deleteMessage(messageid) {
   try {
     await pool.query(`DELETE FROM messages WHERE messageid = ($1)`, [messageid])
   } catch(error) {
-    throw(error)
+    console.error(error)
   }
 }
 

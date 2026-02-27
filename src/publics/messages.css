@@ -25,14 +25,21 @@ body {
   padding: 0.8em 1.5em;
   border-radius: 12px;
   background-color: var(--bg-card);
-  gap: .8em;
+  gap: 1.2em;
+  box-shadow: 2px 2px 10px 2px var(--accent-soft);
 }
 
 .message-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 15%;
+  gap: 1.2em;
+  width: 25%;
+}
+
+.message-info > p {
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
 .message-card > h2 {
@@ -84,4 +91,10 @@ form > button {
   font-size: 1.2em;
   border-radius: 12px;
   padding: .2em .8em;
+  cursor: pointer;
+}
+
+form > button:hover {
+  box-shadow: 2px 2px 10px 2px var(--accent-soft);
+  color: var(--accent);
 }

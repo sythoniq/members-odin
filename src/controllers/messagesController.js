@@ -21,7 +21,7 @@ async function renderMessages(req, res) {
 
 const addMessage = [
   validateMessage,
-  async (req, res) => {
+  async (req, res, next) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).render("addMessage", {
@@ -33,17 +33,17 @@ const addMessage = [
       await db.addMessage(messagetitle, message, req.user);
       res.redirect("/messages")
     } catch (error) {
-      throw(error)
+      next(error)
     }
   }
 ]
 
-async function deleteMessage(req, res) {
+async function deleteMessage(req, res, next) {
   try {
     await db.deleteMessage(req.params.id)
     res.redirect("/messages");
   } catch(error) {
-    throw(error)
+    next(error)
   }
 }
 

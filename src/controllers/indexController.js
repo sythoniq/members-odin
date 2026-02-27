@@ -35,7 +35,7 @@ function renderIndex(req, res) {
 
 const handleRegister = [
   validateUser,
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const result = validationResult(req);
       if (!result.isEmpty()) {
@@ -53,13 +53,13 @@ const handleRegister = [
       await db.registerUser(firstname, lastname, email, username, hash);
       res.redirect("/");
     } catch(error) {
-      throw (error)
+      next(error)
     }
   }
 ]
 
 
-async function registerMember(req, res) {
+async function registerMember(req, res, next) {
   const user = await db.getUserById(req.user.id);
   try {
     if (req.body.answer == process.env.MEMBER) {
@@ -72,7 +72,7 @@ async function registerMember(req, res) {
       res.redirect("/messages");
     }
   } catch(error) {
-    throw(error);
+    next(error);
   }
 }
 
